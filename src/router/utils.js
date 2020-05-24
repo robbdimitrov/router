@@ -2,8 +2,11 @@ export function combine(str1, str2) {
   return (str1 + ' ' + str2).trim();
 }
 
-export function normalize(url) {
-  let path = url;
+export function isParam(value) {
+  return value[0] === ':';
+}
+
+export function normalize(path) {
   if (path[0] === '/') {
     path = path.slice(1);
   }
