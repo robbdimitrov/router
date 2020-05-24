@@ -1,12 +1,20 @@
 import React from 'react';
 
+import Link from '../router/Link';
+
 function Navbar() {
   return (
     <header>
       <ul>
-        <li><a href="/home">Home</a></li>
-        <li><a href="/users/10">Profile</a></li>
-        <li><a href="/settings">Settings</a></li>
+        <li>
+          <Link href='/home' className='home' activeLink='active'>Home</Link>
+        </li>
+        <li>
+          <Link href='/users/10' activeLink='active'>Profile</Link>
+        </li>
+        <li>
+          <Link href='/settings' activeLink='active'>Settings</Link>
+        </li>
       </ul>
     </header>
   );

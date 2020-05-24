@@ -1,8 +1,12 @@
 import React from 'react';
 
-function Profile() {
+function Profile(props) {
+  const { params } = props;
+
   return (
-    <h1>Profile</h1>
+    <div>
+      <h1>Profile {params.userId}</h1>
+    </div>
   );
 }
 

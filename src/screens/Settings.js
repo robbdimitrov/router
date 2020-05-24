@@ -1,8 +1,17 @@
 import React from 'react';
 
-function Settings() {
+import { back } from '../router/utils';
+
+function Settings(props) {
+  const handleClick = (e) => {
+    back();
+  };
+
   return (
-    <h1>Settings</h1>
+    <div>
+      <h1>Settings</h1>
+      <button type='button' onClick={handleClick}>Back</button>
+    </div>
   );
 }
 
