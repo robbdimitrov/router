@@ -3,7 +3,7 @@ import React from 'react';
 import { combine } from './utils';
 
 function Link(props) {
-  const { href, activeLink, children } = props;
+  const { href, children } = props;
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -12,8 +12,8 @@ function Link(props) {
   };
 
   let className = props.className;
-  if (activeLink && href === window.location.pathname) {
-    className = combine(className || '', activeLink);
+  if (href === window.location.pathname) {
+    className = combine(className || '', 'active');
   }
 
   return (

@@ -7,13 +7,13 @@ function Navbar() {
     <header>
       <ul>
         <li>
-          <Link href='/home' className='home' activeLink='active'>Home</Link>
+          <Link href='/home'>Home</Link>
         </li>
         <li>
-          <Link href='/users/10' activeLink='active'>Profile</Link>
+          <Link href='/users/10'>Profile</Link>
         </li>
         <li>
-          <Link href='/settings' activeLink='active'>Settings</Link>
+          <Link href='/settings'>Settings</Link>
         </li>
       </ul>
     </header>

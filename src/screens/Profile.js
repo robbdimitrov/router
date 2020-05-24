@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { RouterContext } from '../router/Router';
 
 function Profile(props) {
-  const { params } = props;
+  const { params } = useContext(RouterContext);
 
   return (
-    <div>
-      <h1>Profile {params.userId}</h1>
-    </div>
+    <h1>Profile {params.userId}</h1>
   );
 }
 
