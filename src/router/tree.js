@@ -11,7 +11,6 @@ export class Tree {
   }
 
   insert(values) {
-    values = values.reverse();
     let node = this.root;
 
     while (values.length) {
@@ -28,18 +27,14 @@ export class Tree {
   }
 
   search(values) {
-    values = values.reverse();
     let node = this.root;
+    let path = [];
     let params = {};
 
     while (values.length) {
       const value = values.pop();
-      let match = node.children.find((item) => item.value === value);
 
-      if (match) {
-        node = match;
-        continue;
-      }
+
 
       match = node.children.filter((item) => item.value[0] === ':');
 
@@ -50,24 +45,23 @@ export class Tree {
       // return route.path and parameters
     }
 
-    let parts = [];
     return {
-      path: parts.join('/'),
+      path: path.join('/'),
       params: params
     };
   }
 }
 
-export function createTree(routes) {
+export function createTree(paths) {
   const tree = new Tree();
-  for (const route of routes) {
-    const values = route.path.split('/');
-    tree.insert(values);
+  for (const path of paths) {
+    const values = path.split('/');
+    tree.insert(values.reverse());
   }
   return tree;
 }
 
 export function resolve(tree, path) {
-  const values = url.split('/');
-  return tree.search(path);
+  const values = path.split('/');
+  return tree.search(values.reverse());
 }

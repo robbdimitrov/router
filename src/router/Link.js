@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { navigate, combine } from './utils';
+import { combine } from './utils';
 
 function Link(props) {
   const { href, activeLink, children } = props;
 
   const handleClick = (e) => {
     e.preventDefault();
-    navigate(href);
+    // TODO: useRouter()
+    // router.navigate(href);
   };
 
   let className = props.className;
