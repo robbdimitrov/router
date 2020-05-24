@@ -1,26 +1,14 @@
-export function pathToComponent(routes, path) {
-  const route = routes.find((item) => item.path === path);
-  return route ? route.component : null;
-}
-
-export function navigate(url) {
-  window.history.pushState(null, '', url);
-}
-
-export function back() {
-  window.history.back();
-}
-
 export function combine(str1, str2) {
   return (str1 + ' ' + str2).trim();
 }
 
-// function getRoute(routes, url) {
-  // const path = url.split('/');
-  // const parts = path.filter((item) => item.length > 0);
-  // let params = {};
-
-
-
-  // return { path, params };
-// }
+export function normalize(url) {
+  let path = url;
+  if (path[0] === '/') {
+    path = path.slice(1);
+  }
+  if (path[path.length - 1] === '/') {
+    path = path.slice(0, -1);
+  }
+  return path;
+}
