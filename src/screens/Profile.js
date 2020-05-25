@@ -1,12 +1,21 @@
 import React from 'react';
 
-import { useRouter } from '../router/';
+import { useRouter } from '../router';
 
 function Profile(props) {
-  const { params } = useRouter();
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.navigate('/settings');
+  };
 
   return (
-    <h1>Profile {params.userId}</h1>
+    <div className="container">
+      <h1>Profile {router.params.userId}</h1>
+      <button type='button' onClick={handleClick}>
+        Open Settings
+      </button>
+    </div>
   );
 }
 

@@ -4,23 +4,23 @@ import { combine } from './utils';
 import { useRouter } from './';
 
 function Link(props) {
-  const { href, children } = props;
-
   const router = useRouter();
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    router.navigate(href);
-  };
-
   let className = props.className;
-  if (href === window.location.pathname) {
+  if (props.href === router.path) {
     className = combine(className || '', 'active');
   }
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (e.target !== router.path) {
+      router.navigate(props.href);
+    }
+  };
+
   return (
     <a {...props} className={className} onClick={handleClick}>
-      {children}
+      {props.children}
     </a>
   );
 }

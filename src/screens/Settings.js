@@ -6,13 +6,15 @@ function Settings(props) {
   const router = useRouter();
 
   const handleClick = () => {
-    router.back();
+    router.navigate('/users/12');
   };
 
   return (
     <div>
       <h1>Settings</h1>
-      <button type='button' onClick={handleClick}>Back</button>
+      <button type='button' onClick={handleClick}>
+        Profile
+      </button>
     </div>
   );
 }

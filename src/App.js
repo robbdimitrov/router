@@ -1,20 +1,14 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
-import { RouterContext, useRoutes } from './router';
 import routes from './router/routes';
 import Navbar from './shared/Navbar';
+import Router from './router';
 
 function App() {
-  const { component } = useRoutes(routes);
-
   return (
-    <RouterContext.Provider>
+    <Router routes={routes}>
       <Navbar />
-
-      <Suspense fallback={<div>Loading...</div>}>
-        <component />
-      </Suspense>
-    </RouterContext.Provider>
+    </Router>
   );
 }
 
