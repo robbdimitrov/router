@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { RouterContext } from '../router/Router';
+import { useRouter } from '../router/';
 
 function Profile(props) {
-  const { params } = useContext(RouterContext);
+  const { params } = useRouter();
 
   return (
     <h1>Profile {params.userId}</h1>

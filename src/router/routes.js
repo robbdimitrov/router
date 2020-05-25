@@ -6,12 +6,10 @@ const Settings = React.lazy(() => import('../screens/Settings'));
 const NotFound = React.lazy(() => import('../shared/NotFound'));
 
 const routes = [
-  { path: 'home', component: Home },
-  { path: 'users/:userId', component: Profile },
-  { path: 'settings', component: Settings },
-  { path: '404', component: NotFound },
-  { path: '', redirectTo: '/home' },
-  { path: '**', redirectTo: '/404' }
+  { path: '/home', component: Home },
+  { path: '/users/:userId', component: Profile },
+  { path: '/settings', component: Settings },
+  { path: '/404', component: NotFound }
 ];
 
 export default routes;

@@ -1,36 +1,37 @@
-import { normalize } from './utils';
+import { normalize, isParam } from './utils';
 
-export function matchRoute(routes, path) {
-  let wildcard = undefined;
+function routeToRegex(route) {
+  const regex = route.replace('/', '\\/')
+    .replace(/:[\w\d]+/, '[\\w\\d]+');
+  return new RegExp(`^${regex}$`);
+}
 
-  for (const route of routes) {
-    if (route.path === '**') {
-      wildcard = route;
-      continue;
-    }
+function matchRoute(routes, path) {
+  return routes.find((route) => {
+    const regex = routeToRegex(route.path);
+    return path.match(regex);
+  });
+}
 
-    const pathValues = normalize(path).split('/');
-    const routeValues = route.path.split('/');
-    if (pathValues.length !== routeValues.length) {
-      continue;
-    }
+function pathParams(route, path) {
+  const pathValues = normalize(path).split('/');
+  const routeValues = normalize(route.path).split('/');
+  let params = {};
 
-    let params = {};
-    let match = true;
-
-    for (let i = 0; i < pathValues.length; i++) {
-      if (routeValues[i][0] === ':') {
-        params[routeValues[i].slice(1)] = pathValues[i];
-      } else if (routeValues[i] !== pathValues[i]) {
-        match = false;
-        break;
-      }
-    }
-
-    if (match) {
-      return { ...route, params };
+  for (let i = 0; i < pathValues.length; i++) {
+    if (isParam(routeValues[i])) {
+      params[routeValues[i].slice(1)] = pathValues[i];
     }
   }
 
-  return wildcard;
+  return params;
+}
+
+export function match(routes, path) {
+  const route = matchRoute(routes, path);
+  if (!route) {
+    return;
+  }
+  const params = pathParams(route, path);
+  return { ...route, params };
 }

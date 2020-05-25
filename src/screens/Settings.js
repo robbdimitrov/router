@@ -1,9 +1,12 @@
 import React from 'react';
 
+import { useRouter } from '../router/';
+
 function Settings(props) {
-  const handleClick = (e) => {
-    // TODO: useRouter, call router.back
-    // router.back();
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.back();
   };
 
   return (
