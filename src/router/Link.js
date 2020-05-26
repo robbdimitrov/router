@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { combine } from './utils';
-import { useRouter } from './';
+import { useRouter } from './Router';
 
 function Link(props) {
   const router = useRouter();

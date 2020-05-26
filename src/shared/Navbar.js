@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Link from '../router/Link';
+import { Link } from '../router';
 
 function Navbar() {
   return (
