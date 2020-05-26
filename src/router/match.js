@@ -1,11 +1,18 @@
 import { normalize, isParam } from './utils';
 
+let regexCache = {};
+
 function routeToRegex(route) {
-  const regex = route
+  if (regexCache[route]) {
+    return regexCache[route];
+  }
+  const formatted = route
     .replace('/', '\\/')
     .replace(/:[\w\d]+/, '[\\w\\d]+')
     .replace('*', '.+');
-  return new RegExp(`^${regex}$`);
+  const regex = new RegExp(`^${formatted}$`);
+  regexCache[route] = regex;
+  return regex;
 }
 
 function matchRoute(routes, path) {

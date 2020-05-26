@@ -9,9 +9,9 @@ const routes = [
   { path: '/home', component: Home },
   { path: '/users/:userId', component: Profile },
   { path: '/settings', component: Settings },
-  { path: '/404', component: NotFound },
+  { path: '/not-found', component: NotFound },
   { path: '/', redirectTo: '/home' },
-  { path: '*', redirectTo: '/404' }
+  { path: '*', redirectTo: '/not-found' }
 ];
 
 export default routes;
