@@ -12,8 +12,8 @@ function Link(props) {
   }
 
   const handleClick = (e) => {
-    e.preventDefault();
-    if (e.target !== router.path) {
+    if (!e.shiftKey && !e.ctrlKey && !e.altKey) {
+      e.preventDefault();
       router.navigate(props.href);
     }
   };

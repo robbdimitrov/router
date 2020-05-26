@@ -12,10 +12,13 @@ function Router(props) {
   const [ path, setPath ] = React.useState(window.location.pathname)
   const route = match(props.routes, path);
 
-  const navigate = (path, rewrite = false) => {
+  const navigate = (url, rewrite = false) => {
+    if (url === path) {
+      return;
+    }
     const method = rewrite ? 'replace' : 'push';
-    window.history[`${method}State`](null, '', path);
-    setPath(path);
+    window.history[`${method}State`](null, '', url);
+    setPath(url);
   };
 
   React.useEffect(() => {
