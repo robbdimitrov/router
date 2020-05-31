@@ -1,8 +1,10 @@
 import React from 'react';
 
-function Home() {
+function Home({query}) {
   return (
-    <h1>Home</h1>
+    <div>
+      <h1>Home</h1>
+    </div>
   );
 }
 

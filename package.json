@@ -1,7 +1,6 @@
 {
-  "name": "router",
-  "version": "0.1.0",
-  "private": true,
+  "name": "crossroad",
+  "version": "0.1.0-alpha.1",
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

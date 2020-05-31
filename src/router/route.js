@@ -2,7 +2,7 @@ import { normalize, isParam } from './utils';
 
 let regexCache = {};
 
-function routeToRegex(route) {
+function createRegex(route) {
   if (regexCache[route]) {
     return regexCache[route];
   }
@@ -15,14 +15,14 @@ function routeToRegex(route) {
   return regex;
 }
 
-function matchRoute(routes, path) {
+function findRoute(routes, path) {
   return routes.find((route) => {
-    const regex = routeToRegex(route.path);
+    const regex = createRegex(route.path);
     return path.match(regex);
   });
 }
 
-function pathParams(route, path) {
+function getParams(route, path) {
   const pathValues = normalize(path).split('/');
   const routeValues = normalize(route.path).split('/');
   let params = {};
@@ -41,10 +41,10 @@ function pathParams(route, path) {
 }
 
 export function match(routes, path) {
-  const route = matchRoute(routes, path);
+  const route = findRoute(routes, path);
   if (!route) {
     return;
   }
-  const params = pathParams(route, path);
+  const params = getParams(route, path);
   return { ...route, params };
 }

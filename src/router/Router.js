@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { match } from './match';
+import { match } from './route';
+import { parse } from './query';
 
 const RouterContext = React.createContext({});
 
@@ -9,7 +10,7 @@ export function useRouter() {
 }
 
 function Router(props) {
-  const [ path, setPath ] = React.useState(window.location.pathname)
+  const [ path, setPath ] = React.useState(window.location.pathname);
   const route = match(props.routes, path);
 
   const navigate = (url, rewrite = false) => {
@@ -30,7 +31,11 @@ function Router(props) {
     return null;
   }
 
-  const value = { path, navigate, params: route.params };
+  const value = {
+    path, navigate,
+    params: route.params,
+    query: parse(window.location.search)
+  };
 
   return (
     <RouterContext.Provider value={value}>
