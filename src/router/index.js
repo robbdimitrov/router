@@ -1,2 +1,2 @@
-export { default as Router, useRouter } from './Router';
+export { default as Router, useRouter } from './router';
 export { default as Link } from './Link';

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { combine } from './utils';
-import { useRouter } from './Router';
+import { combine, isKeyPressed } from './utils';
+import { useRouter } from './router';
 
 function Link(props) {
   const router = useRouter();
@@ -12,7 +12,7 @@ function Link(props) {
   }
 
   const handleClick = (e) => {
-    if (!e.shiftKey && !e.ctrlKey && !e.altKey) {
+    if (!isKeyPressed(e)) {
       e.preventDefault();
       router.navigate(props.href);
     }

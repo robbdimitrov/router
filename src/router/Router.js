@@ -4,14 +4,15 @@ import { match } from './route';
 import { parse } from './query';
 
 const RouterContext = React.createContext({});
+const initialPath = window.location.pathname;
 
 export function useRouter() {
   return React.useContext(RouterContext);
 }
 
-function Router(props) {
-  const [ path, setPath ] = React.useState(window.location.pathname);
-  const route = match(props.routes, path);
+export function useRoutes(routes) {
+  const [ path, setPath ] = React.useState(initialPath);
+  const route = match(routes, path);
 
   const navigate = (url, rewrite = false) => {
     if (url === path) {
@@ -23,7 +24,9 @@ function Router(props) {
   };
 
   React.useEffect(() => {
-    window.onpopstate = (e) => setPath(window.location.pathname);
+    window.onpopstate = () => {
+      setPath(window.location.pathname);
+    }
   });
 
   if (route.redirectTo) {
@@ -32,17 +35,20 @@ function Router(props) {
   }
 
   const value = {
-    path, navigate,
+    navigate, path,
     params: route.params,
-    query: parse(window.location.search)
+    query: parse(window.location.search),
+    component: route.component
   };
 
+  return value;
+}
+
+function Router(props) {
+
   return (
-    <RouterContext.Provider value={value}>
+    <RouterContext.Provider>
       {props.children}
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <route.component />
-      </React.Suspense>
     </RouterContext.Provider>
   );
 }

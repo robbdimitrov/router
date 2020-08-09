@@ -6,6 +6,11 @@ export function isParam(str) {
   return str[0] === ':';
 }
 
+export function isKeyPressed(event) {
+  return event.shiftKey || event.ctrlKey
+    || event.altKey || event.metaKey;
+}
+
 export function normalize(path) {
   if (path[0] === '/') {
     path = path.slice(1);
