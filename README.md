@@ -1,4 +1,4 @@
-# Router
+# Corniche
 
 Simple router for react without external dependencies.
 

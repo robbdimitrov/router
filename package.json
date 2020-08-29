@@ -1,11 +1,11 @@
 {
   "name": "corniche",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "dependencies": {
     "cra-template": "1.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
