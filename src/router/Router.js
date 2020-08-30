@@ -31,7 +31,7 @@ export function useRoutes(routes) {
 
   if (route.redirectTo) {
     navigate(route.redirectTo, true);
-    return null;
+    return {};
   }
 
   return {
