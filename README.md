@@ -8,25 +8,32 @@ Simple router for react without external dependencies.
 
 ```js
 const routes = [
-  { path: '/home', component: Home },
-  { path: '/users/:userId', component: Profile },
-  { path: '/settings', component: Settings },
-  { path: '/404', component: NotFound },
+  { path: '/home', component: <Home /> },
+  { path: '/users/:userId', component: <Profile /> },
+  { path: '/settings', component: <Settings /> },
+  { path: '/404', component: <NotFound /> },
   { path: '/', redirectTo: '/home' },
   { path: '*', redirectTo: '/404' }
 ];
-```
 
 ### Init Router:
 
 ```js
-import Router from './router';
+import { RouterContext, useRoutes } from './router';
 
 function App() {
+  const route = useRoutes(routes);
+
   return (
-    <Router routes={routes}>
-      <Navbar />
-    </Router>
+    <div className="app">
+      <RouterContext.Provider value={route}>
+        <Navbar />
+
+        <Suspense fallback={<div>Loading...</div>}>
+          {route.component}
+        </Suspense>
+      </RouterContext.Provider>
+    </div>
   );
 }
 ```
