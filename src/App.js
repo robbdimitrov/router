@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import Navbar from './shared/Navbar';
-import { Router, useRouter } from './router';
+import { RouterContext, useRoutes } from './router';
 
 const Home = React.lazy(() => import('./screens/Home'));
 const Profile = React.lazy(() => import('./screens/Profile'));
@@ -19,12 +19,16 @@ const routes = [
 
 function App() {
   const route = useRoutes(routes);
+
   return (
     <div className="app">
-      <Router>
+      <RouterContext.Provider value={route}>
         <Navbar />
-        {route}
-      </Router>
+
+        <Suspense fallback={<div>Loading...</div>}>
+          {route.component}
+        </Suspense>
+      </RouterContext.Provider>
     </div>
   );
 }
