@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { match } from './route';
-import { parse } from './query';
+import {match} from './route';
+import {parse} from './query';
 
 export const RouterContext = React.createContext({});
 const initialPath = window.location.pathname;
@@ -14,7 +14,13 @@ export function useRoutes(routes) {
   const [path, setPath] = React.useState(initialPath);
   const route = match(routes, path);
 
-  const navigate = (url, rewrite = false) => {
+  React.useEffect(() => {
+    window.onpopstate = () => {
+      setPath(window.location.pathname);
+    }
+  });
+
+  const navigate = (url, rewrite) => {
     if (url === path) {
       return;
     }
@@ -23,21 +29,14 @@ export function useRoutes(routes) {
     setPath(url);
   };
 
-  React.useEffect(() => {
-    window.onpopstate = () => {
-      setPath(window.location.pathname);
-    }
-  });
-
   if (route.redirectTo) {
     navigate(route.redirectTo, true);
-    return {};
   }
 
   return {
     navigate, path,
     params: route.params,
     query: parse(window.location.search),
-    component: route.component
+    component: route.component,
   };
 }

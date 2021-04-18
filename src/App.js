@@ -1,7 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import Navbar from './components/Navbar';
-import { RouterContext, useRoutes } from '../src/router';
+import {RouterContext, useRoutes} from '../src/router';
 
 const Home = React.lazy(() => import('./components/Home'));
 const Profile = React.lazy(() => import('./components/Profile'));
@@ -9,12 +9,12 @@ const Settings = React.lazy(() => import('./components/Settings'));
 const NotFound = React.lazy(() => import('./components/NotFound'));
 
 const routes = [
-  { path: '/home', component: <Home /> },
-  { path: '/users/:userId', component: <Profile /> },
-  { path: '/settings', component: <Settings /> },
-  { path: '/not-found', component: <NotFound /> },
-  { path: '/', redirectTo: '/home' },
-  { path: '*', redirectTo: '/not-found' }
+  {path: '/home', component: Home},
+  {path: '/users/:userId', component: Profile},
+  {path: '/settings', component: Settings},
+  {path: '/not-found', component: NotFound},
+  {path: '/', redirectTo: '/home'},
+  {path: '*', redirectTo: '/not-found'},
 ];
 
 function App() {
@@ -25,9 +25,9 @@ function App() {
       <RouterContext.Provider value={route}>
         <Navbar />
 
-        <Suspense fallback={<div>Loading...</div>}>
-          {route.component}
-        </Suspense>
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <route.component />
+        </React.Suspense>
       </RouterContext.Provider>
     </div>
   );

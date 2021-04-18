@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useRouter } from '../../src/router';
+import {useRouter} from '../../src/router';
 
 function Settings(props) {
   const router = useRouter();

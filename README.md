@@ -12,12 +12,15 @@ and [Context](https://reactjs.org/docs/context.html).
 
 ## Features
 
-- Display correct page based on path
-- Allow access to path params and quary params
-- Allow routing from within the app
-- Set the `active` class on [Link](./src/router/Link.js) components
-- Add a fallback case for wildcard/404 page
-- Allow redirects
+- Access to path params and quary params
+- Routing from within the app
+- `Active` class on [Link](./src/router/Link.js) components
+- Fallback case for wildcard/404 page
+- Redirects
+
+## Example
+
+Example usage can be found in [App.js](./src/App.js)
 
 ## License
 

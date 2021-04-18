@@ -1,15 +1,16 @@
-import React from 'react';
-
-import { combine, isKeyPressed } from './utils';
-import { useRouter } from './router';
+import {useRouter} from './router';
 
 function Link(props) {
   const router = useRouter();
 
-  let className = props.className;
+  let className = props.className || '';
   if (props.href === router.path) {
-    className = combine(className || '', 'active');
+    className = className.concat(' ', 'active').trim();
   }
+
+  const isKeyPressed = (e) => {
+    return e.shiftKey || e.ctrlKey || e.altKey || e.metaKey;
+  };
 
   const handleClick = (e) => {
     if (!isKeyPressed(e)) {
