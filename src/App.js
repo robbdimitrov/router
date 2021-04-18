@@ -26,7 +26,9 @@ function App() {
         <Navbar />
 
         <React.Suspense fallback={<div>Loading...</div>}>
-          <route.component />
+          {route.component &&
+            <route.component />
+          }
         </React.Suspense>
       </RouterContext.Provider>
     </div>
