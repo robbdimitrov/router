@@ -1,63 +1,23 @@
-# Corniche
+# Router
 
-Simple router for react without external dependencies.
+Simple [React](https://github.com/facebook/react) router
+without external dependencies.
 
-## Example usage:
+## Motivation
 
-### Create routes:
+There are too many routing libraries with countless dependencies.
+This `router` project is an example of how to do the routing with pure React
+using [Hooks](https://reactjs.org/docs/hooks-intro.html)
+and [Context](https://reactjs.org/docs/context.html).
 
-```js
-const routes = [
-  { path: '/home', component: <Home /> },
-  { path: '/users/:userId', component: <Profile /> },
-  { path: '/settings', component: <Settings /> },
-  { path: '/404', component: <NotFound /> },
-  { path: '/', redirectTo: '/home' },
-  { path: '*', redirectTo: '/404' }
-];
+## Features
 
-### Init Router:
-
-```js
-import { RouterContext, useRoutes } from './router';
-
-function App() {
-  const route = useRoutes(routes);
-
-  return (
-    <div className="app">
-      <RouterContext.Provider value={route}>
-        <Navbar />
-
-        <Suspense fallback={<div>Loading...</div>}>
-          {route.component}
-        </Suspense>
-      </RouterContext.Provider>
-    </div>
-  );
-}
-```
-
-### Use the `useRouter` hook to navigate and get path params
-
-```js
-function Profile(props) {
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.navigate('/settings');
-  };
-
-  return (
-    <div className="container">
-      <h1>Profile {router.params.userId}</h1>
-      <button type='button' onClick={handleClick}>
-        Open Settings
-      </button>
-    </div>
-  );
-}
-```
+- Display correct page based on path
+- Allow access to path params and quary params
+- Allow routing from within the app
+- Set the `active` class on [Link](./src/router/Link.js) components
+- Add a fallback case for wildcard/404 page
+- Allow redirects
 
 ## License
 

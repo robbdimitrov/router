@@ -1,12 +1,12 @@
 import React, { Suspense } from 'react';
 
-import Navbar from './shared/Navbar';
-import { RouterContext, useRoutes } from './router';
+import Navbar from './components/Navbar';
+import { RouterContext, useRoutes } from '../src/router';
 
-const Home = React.lazy(() => import('./screens/Home'));
-const Profile = React.lazy(() => import('./screens/Profile'));
-const Settings = React.lazy(() => import('./screens/Settings'));
-const NotFound = React.lazy(() => import('./screens/NotFound'));
+const Home = React.lazy(() => import('./components/Home'));
+const Profile = React.lazy(() => import('./components/Profile'));
+const Settings = React.lazy(() => import('./components/Settings'));
+const NotFound = React.lazy(() => import('./components/NotFound'));
 
 const routes = [
   { path: '/home', component: <Home /> },
