@@ -12,7 +12,7 @@ and [Context](https://reactjs.org/docs/context.html).
 
 ## Features
 
-- Access to path params and quary params
+- Access to path params and query params
 - Routing from within the app
 - `Active` class on [Link](./src/router/Link.js) components
 - Fallback case for wildcard/404 page
