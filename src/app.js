@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Navbar from './components/Navbar';
-import {RouterContext, useRoutes} from '../src/router';
+import {RouterContext, useRoutes} from './router';
 
 const Home = React.lazy(() => import('./components/Home'));
 const Profile = React.lazy(() => import('./components/Profile'));
